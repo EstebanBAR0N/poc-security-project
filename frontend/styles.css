@@ -1,0 +1,29 @@
+body {
+  font-family: "Arial", sans-serif;
+  text-align: center;
+}
+
+h1 {
+  color: #333;
+  color: red;
+}
+
+form {
+  margin-top: 20px;
+}
+
+input,
+button {
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 20px;
+}
+
+button {
+  cursor: pointer;
+}
+
+#result {
+  margin-top: 20px;
+  font-size: 18px;
+}

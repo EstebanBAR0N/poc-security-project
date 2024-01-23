@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Super Bash commands executor</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <script type="text/javascript">
+      async function calculate() {
+        try {
+          var input = document.getElementById("calc-input").value;
+
+          const BACKEND_URL = "http://localhost:3000";
+
+          const response = await fetch(BACKEND_URL + "/eval", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ expression: input }),
+          });
+
+          if (!response.ok) {
+            throw new Error(`Error, status : ${response.status}`);
+          }
+
+          const result = await response.json();
+
+          document.getElementById("result").innerHTML =
+            "Result : " + result.result;
+        } catch (error) {
+          console.error("Calculation error :", error);
+          document.getElementById("result").innerHTML = "Calculation error";
+        }
+      }
+    </script>
+
+    <h1>My Super Bash commands executor</h1>
+
+    <form id="calculator-form" onkeydown="return event.key != 'Enter';">
+      <input type="text" id="calc-input" placeholder="Enter your calculation" />
+      <button type="button" onclick="calculate()">Calculer</button>
+    </form>
+
+    <div id="result">Result :</div>
+  </body>
+</html>
